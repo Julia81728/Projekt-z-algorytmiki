@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         //stworzenie tablic text oraz pattern
         Random rand = new Random();
-        int[] text = new int [7];            //wartość zmniejszona dla celów testowych, zmienić 7 na 10000
+        int[] text = new int [8];            //wartość zmniejszona dla celów testowych, zmienić 7 na 10000
         int i;
         for (i = 0; i < text.length; i++) {
             int numText = rand.nextInt(27) + 65;
@@ -42,17 +42,26 @@ public class Main {
             pattern[m+1] = key2;
 
         }
-
-
-
-        //testowe wyświetlenie tabel
+        //testowe wyświetlenie tabeli text
         for (i = 0; i<text.length; i++){
             System.out.print(text[i] + " ");
         }
         System.out.println("\n");
 
-        for (n = 0; n<pattern.length; n++){
-            System.out.print(pattern[n] + " ");
+        //wyszukiwanie wartości wylosowanej z zakresu <65,90> za pomocą Binary Search
+        BinarySearch ob = new BinarySearch();
+        Random rand3 = new Random();
+        int x = rand3.nextInt(26) + 65;
+        int result = ob.binarySearch (text, x);
+        System.out.println("Wyszukiwany element: " + x);
+        if (result == -1)
+            System.out.println( "Elementu nie udało sie znaleźć");
+        else
+            System.out.println("Element znajduje się na pozycji " + result);
         }
+
+//
+//        for (n = 0; n<pattern.length; n++){                                 //wyświetlanie tabeli pattern w celach testowych
+//            System.out.print(pattern[n] + " ");
+//        }
     }
-}
