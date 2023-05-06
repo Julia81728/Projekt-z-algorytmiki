@@ -1,10 +1,10 @@
-import java.util.Random;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         //stworzenie tablic text oraz pattern
         Random rand = new Random();
-        int[] text = new int [8];            //wartość zmniejszona dla celów testowych, zmienić 7 na 10000
+        int[] text = new int [10000];
         int i;
         for (i = 0; i < text.length; i++) {
             int numText = rand.nextInt(27) + 65;
@@ -42,17 +42,6 @@ public class Main {
             pattern[m+1] = sort2;
 
         }
-        //testowe wyświetlenie tabeli text
-        for (i = 0; i<text.length; i++){
-            System.out.print(text[i] + " ");
-        }
-        System.out.println("\n");
-
-        //testowe wyświetlenie tabeli pattern
-        for (n = 0; n<pattern.length; n++){
-            System.out.print(pattern[n] + " ");
-        }
-        System.out.println("\n");
 
         //wyszukiwanie wartości wylosowanej z zakresu <65,90> za pomocą Binary Search
         //oraz mierzenie czasu wyszukiwania
@@ -72,23 +61,24 @@ public class Main {
         System.out.println("Czas wyszukiwania wartości wylosowanej (w milisekundach): " + (stop - start) + "\n");
 
         //zamiana wartości numerycznych w tablicach text oraz pattern na wartości tekstowe (ASCII)
-        for (i = 1; i<text.length; i++){
-            System.out.print((char) text[i]);
-        }
-        System.out.println("\n");
-
-        for (n = 0; n<pattern.length; n++){
-            System.out.print((char) text[n]);
-        }
-        System.out.println("\n");
-
+        List<String> lista = new ArrayList<String>();
+        for (i=0; i<text.length; i++) {
+            String str = Character.toString(text[i]);
+            lista.add(str);
         }
 
+        List<String> lista2 = new ArrayList<>();
+        for (n=0;n<pattern.length;n++){
+            String str2 = Character.toString(pattern[n]);
+            lista2.add(str2);
+        }
 
+        //Wyszukiwanie w tablicy text wzoru pattern za pomocą algorytmu KMP
+        String txt = String.valueOf(lista);
+        String pat = String.valueOf(lista2);
 
-//    int num = 33;                                       //zamiana na ASCII
-//System.out.println((char) num);
-
-
+        new KMP_String_Matching().KMPSearch(pat, txt);
 
     }
+
+}
